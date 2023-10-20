@@ -1,5 +1,6 @@
 import { bitable } from '@lark-base-open/js-sdk';
-import { useRecords } from './record';
+import { defineStore } from 'pinia';
+import { useViews } from './view';
 
 export enum FieldType {
   Text = 1,
@@ -7,7 +8,7 @@ export enum FieldType {
 
 const { base } = bitable;
 
-export const useTable = () => {
+export const useTable = defineStore('table', () => {
   const tableMetaList = ref([]);
   const activeTableStore = ref(null);
   const activeTable = computed(() => toRaw(activeTableStore.value));
@@ -20,31 +21,34 @@ export const useTable = () => {
     ]);
     tableMetaList.value = list;
     activeTableStore.value = table;
-    useRecords().getRecords(table);
   }
-
-  onMounted(updateTable);
-  base.onTableDelete(updateTable);
-  base.onTableAdd(updateTable);
 
   return {
     tableMetaList,
     activeTableId,
-    activeTable
+    activeTable,
+    updateTable,
   }
-}
+});
 
-export const useTableField = (table) => {
+export const useTableField = () => {
   const fieldMetaList = ref([]);
+  const viewStore = useViews();
 
   const updateField = async () => {
-    const list = await table.value?.getFieldMetaList() || [];
+    const list = await viewStore.view?.getFieldMetaList() || [];
     fieldMetaList.value = list;
   }
 
-  watch(table, updateField);
+  const getFieldNameById = (fieldId) => {
+    return fieldMetaList.value.find((fieldMeta) => fieldMeta.id === fieldId)?.name || '';
+  }
+
+  watch(() => viewStore.view, updateField);
 
   return {
-    fieldMetaList
+    fieldMetaList,
+    getFieldNameById,
+    updateField
   }
 }

@@ -1,12 +1,14 @@
 <script setup>
-  import Form from './components/Form.vue';
+  import Form from './components/Form/Form.vue';
   import JsonViewer from './components/JsonViewer.vue';
 </script>
 
 <template>
   <main>
     <Form />
-    <ElDivider />
+    <ElDivider>
+      <div class="color-#444">结果</div>
+    </ElDivider>
     <JsonViewer />
   </main>
 </template>

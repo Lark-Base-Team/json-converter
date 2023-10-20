@@ -1,9 +1,9 @@
-const json = ref('');
+const jsonMap = ref(new Map());
 
-export const setJson = (value) => json.value = value;
+export const setJsonMap = (value) => jsonMap.value = value;
 
 export const useJson = () => {
   return {
-    json
+    jsonMap
   }
 }
