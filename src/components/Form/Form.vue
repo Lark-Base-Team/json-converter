@@ -24,7 +24,7 @@
 <template>
   <div text-center>
     <ElForm ref="formRef" label-position="top" :model="formData" :rules="rules">
-      <ElFormItem label="选择数据表" prop="tableId">
+      <ElFormItem :label="$t('选择数据表')" prop="tableId">
         <ElSelect v-model="formData.tableId" class="w-100%">
           <ElOption
             v-for="item in table.tableMetaList"
@@ -35,7 +35,7 @@
         </ElSelect>
       </ElFormItem>
 
-      <ElFormItem label="选择 Key 列" prop="keyCol">
+      <ElFormItem :label="$t('选择 Key 列')" prop="keyCol">
         <ElSelect v-model="formData.keyCol" class="w-100%">
           <ElOption
             v-for="item in textFieldMetaList"
@@ -46,7 +46,7 @@
         </ElSelect>
       </ElFormItem>
 
-      <ElFormItem label="选择 Value 列" prop="valueCols">
+      <ElFormItem :label="$t('选择 Value 列')" prop="valueCols">
         <ElSelect v-model="formData.valueCols" multiple class="w-100%">
           <ElOption
             v-for="item in textFieldMetaList"
@@ -57,7 +57,7 @@
         </ElSelect>
       </ElFormItem>
     </ElForm>
-    <ElButton type="primary" round :loading="loading" @click="transform">转成 JSON</ElButton>
-    <ElButton type="primary" round @click="download">下载</ElButton>
+    <ElButton type="primary" round :loading="loading" @click="transform">{{ $t('转成 JSON') }}</ElButton>
+    <ElButton type="primary" round @click="download">{{ $t('下载') }}</ElButton>
   </div>
 </template>

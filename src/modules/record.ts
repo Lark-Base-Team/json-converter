@@ -33,7 +33,7 @@ export const useRecords = defineStore('record', {
     },
 
     transTwoFieldsToJson(keyFieldId, valueFieldId) {
-      const keyRecords = this.getFieldRecords(keyFieldId).filter(record => !!record);
+      const keyRecords = this.getFieldRecords(keyFieldId)
       const valueRecords = this.getFieldRecords(valueFieldId);
       const result = transTwoFieldRecordsToJson(keyRecords, valueRecords);
       return result;

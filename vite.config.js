@@ -25,7 +25,7 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    VueDevTools()
+    // VueDevTools()
   ],
   resolve: {
     alias: {

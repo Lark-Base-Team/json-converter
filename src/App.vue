@@ -1,13 +1,15 @@
 <script setup>
   import Form from './components/Form/Form.vue';
   import JsonViewer from './components/JsonViewer.vue';
+  import Tip from './components/Tip.vue';
 </script>
 
 <template>
   <main>
+    <Tip />
     <Form />
     <ElDivider>
-      <div class="color-#444">结果</div>
+      <div class="color-#444">{{ $t('结果') }}</div>
     </ElDivider>
     <JsonViewer />
   </main>

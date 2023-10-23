@@ -3,6 +3,7 @@ import { useTable, useTableField, FieldType } from '@/modules/table';
 import { useRecords, transTwoFieldRecordsToJson } from '@/modules/record';
 import { useViews } from '@/modules/view';
 import { setJsonMap } from '@/modules/json';
+import { t } from '@/locales/i18n';
 
 const { base } = bitable;
 
@@ -12,19 +13,18 @@ const updateTableInfo = async () => {
   await useRecords().getLatestRecords();
 }
 
-const rules = reactive({
-  tableId: [
-    { required: true, message: '请选择数据表', trigger: 'blur' }
-  ],
-  keyCol: [
-    { required: true, message: '请选择 Key 列', trigger: 'blur' }
-  ],
-  valueCols: [
-    { required: true, message: '请选择 Value 列', trigger: 'blur' }
-  ]
-});
-
 export const useForm = () => {
+  const rules = {
+    tableId: [
+      { required: true, message: t('请选择'), trigger: 'blur' }
+    ],
+    keyCol: [
+      { required: true, message: t('请选择'), trigger: 'blur' }
+    ],
+    valueCols: [
+      { required: true, message: t('请选择'), trigger: 'blur' }
+    ]
+  };
   const table = useTable();
   const { transTwoFieldsToJson, getLatestRecords } = useRecords();
   const { fieldMetaList, getFieldNameById, updateField } = useTableField();
